@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../App.css';
+import '../styles/App.css';
 
 function App() {
   return (
     <div className="App">
-
+      <h1>Star Wars API</h1>
     </div>
   );
 }
