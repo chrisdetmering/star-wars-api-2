@@ -4,19 +4,15 @@ import axios from 'axios';
 import Table from './Table';
 import '../styles/App.css';
 
-const getData = (setSwBulkData) => {
-  axios.get('https://swapi.dev/api/people/?page=3').then((response) => {
-    setSwBulkData(response.data.results);
-  }).catch((error) => {
-    console.log(error);
-  });
-};
-
 function App() {
   const [swBulkData, setSwBulkData] = useState({});
 
   useEffect(() => {
-    getData(setSwBulkData);
+    axios.get('https://swapi.dev/api/people/?page=3').then((response) => {
+      setSwBulkData(response.data.results);
+    }).catch((error) => {
+      console.log(error);
+    });
   });
 
   return (
