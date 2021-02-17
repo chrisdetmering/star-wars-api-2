@@ -4,33 +4,25 @@ import axios from 'axios';
 import Table from './Table';
 import '../styles/App.css';
 
-// function getData() {
-//
-// }
+const getData = (setSwBulkData) => {
+  axios.get('https://swapi.dev/api/people/?page=3').then((response) => {
+    setSwBulkData(response.data.results);
+  }).catch((error) => {
+    console.log(error);
+  });
+};
 
 function App() {
-  const [person, setPerson] = useState({});
-
-  const getData = () => {
-    axios.get('https://swapi.dev/api/people/?page=3').then((response) => {
-    // console.log(response);
-      setPerson(response.data.results);
-    //   console.log(person);
-    // }).catch(() => {
-    //   console.log('Nope');
-    });
-    // setPerson(data);
-  };
+  const [swBulkData, setSwBulkData] = useState({});
 
   useEffect(() => {
-    getData();
-    console.log(person[0]);
+    getData(setSwBulkData);
   });
 
   return (
     <div className="App">
       <h1>Star Wars API</h1>
-      <Table person={person} />
+      <Table swBulkData={swBulkData} />
     </div>
   );
 }
