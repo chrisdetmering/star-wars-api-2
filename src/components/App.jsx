@@ -4,16 +4,26 @@ import axios from 'axios';
 import Table from './Table';
 import '../styles/App.css';
 
+const getResponse = async () => {
+  let response;
+  try {
+    response = await axios.get('https://swapi.dev/api/people/?page=3');
+  } catch (error) {
+    console.log(error);
+  }
+  return response;
+};
+
 function App() {
   const [swBulkData, setSwBulkData] = useState({});
 
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/?page=3').then((response) => {
+    const fetchData = async () => {
+      const response = await getResponse();
       setSwBulkData(response.data.results);
-    }).catch((error) => {
-      console.log(error);
-    });
-  });
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
