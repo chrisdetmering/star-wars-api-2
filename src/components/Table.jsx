@@ -3,28 +3,34 @@ import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const getData = (speciesURL) => {
-  return axios.get(speciesURL).then((response) => response).catch((error) => error);
+const getData = async (speciesURL) => {
+  let data;
+  try {
+    data = await axios.get(speciesURL);
+  } catch (error) {
+    console.log('Error: ', error);
+  }
+  console.log(data);
+  return data;
 };
 
 function displayData(props) {
-  console.log(getData('http://swapi.dev/api/species/2/'));
-
   console.log(props.swBulkData);
   let species;
-  return props.swBulkData.map((stuff) => {
-    if (stuff.species.length === 0) {
+  return props.swBulkData.map((characterInfo) => {
+    if (characterInfo.species.length === 0) {
       species = 'Human';
     } else {
-      getData();
+      const { data } = getData(characterInfo.species);
+      species = data.name;
     }
     return (
       <tr>
-        <td>{stuff.name}</td>
-        <td>{stuff.birth_year}</td>
-        <td>{stuff.height}</td>
-        <td>{stuff.mass}</td>
-        <td>{stuff.homeworld}</td>
+        <td>{characterInfo.name}</td>
+        <td>{characterInfo.birth_year}</td>
+        <td>{characterInfo.height}</td>
+        <td>{characterInfo.mass}</td>
+        <td>{characterInfo.homeworld}</td>
         <td>{species}</td>
       </tr>
     );
