@@ -66,8 +66,10 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Star Wars API</h1>
-      <Table swBulkData={swBulkData} />
+      <main>
+        <h1>Star Wars API</h1>
+        <Table swBulkData={swBulkData} />
+      </main>
     </div>
   );
 }
