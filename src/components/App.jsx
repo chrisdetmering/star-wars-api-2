@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
-import '../styles/App.css';
+import '../styles/app.css';
 
 const getResponse = async () => {
   let response;
@@ -65,7 +65,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Star Wars API</h1>
       <Table swBulkData={swBulkData} />
     </div>
