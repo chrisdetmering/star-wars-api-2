@@ -7,7 +7,7 @@ import '../styles/app.css';
 const getResponse = async () => {
   let response;
   try {
-    response = await axios.get('https://swapi.dev/api/people/?page=3');
+    response = await axios.get('https://swapi.dev/api/people/');
   } catch (error) {
     console.log(error);
   }
