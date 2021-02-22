@@ -4,14 +4,18 @@ import axios from 'axios';
 import Table from './Table';
 import '../styles/app.css';
 
-const getResponse = async () => {
+const getCharacterInfo = async () => {
   let response;
   try {
     response = await axios.get('https://swapi.dev/api/people/');
+    console.log(response.data);
   } catch (error) {
     console.log(error);
   }
-  return response;
+  return {
+    characterCount: response.data.count,
+    characterInfo: response.data.results,
+  };
 };
 
 const getHomeworld = async (worldAPI) => {
@@ -51,15 +55,15 @@ const setSpecies = async (response) => {
 };
 
 function App() {
-  const [swBulkData, setSwBulkData] = useState({});
+  const [swCharacterInfo, setswCharacterInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getResponse();
-      const CharacterInfo = response.data.results;
-      await setHomeWorld(CharacterInfo);
-      await setSpecies(CharacterInfo);
-      setSwBulkData(CharacterInfo);
+      const responseData = await getCharacterInfo();
+      const { characterCount, characterInfo } = responseData;
+      await setHomeWorld(characterInfo);
+      await setSpecies(characterInfo);
+      setswCharacterInfo(characterInfo);
     };
     fetchData();
   }, []);
@@ -68,7 +72,7 @@ function App() {
     <div className="app">
       <main>
         <h1>Star Wars API</h1>
-        <Table swBulkData={swBulkData} />
+        <Table swCharacterInfo={swCharacterInfo} />
       </main>
     </div>
   );

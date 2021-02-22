@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/table.css';
 
 function displayData(props) {
-  return props.swBulkData.map((characterInfo) => {
+  return props.swCharacterInfo.map((characterInfo) => {
     return (
       <tr>
         <td>{characterInfo.name}</td>
@@ -35,7 +35,7 @@ function Table(props) {
         <tbody>
           {
             // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-            props.swBulkData[0]
+            props.swCharacterInfo[0]
             // eslint-disable-next-line react/prop-types,react/destructuring-assignment
             && displayData(props)
           }
