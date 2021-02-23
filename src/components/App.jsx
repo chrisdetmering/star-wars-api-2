@@ -84,7 +84,12 @@ function App() {
         <h1>Star Wars API</h1>
         <Table swCharacterInfo={swCharacterInfo} />
       </main>
-      <Pagination swCharacterCount={swCharacterCount} setswAPI={setswAPI} setAPI={setAPI} />
+      <Pagination
+        swCharacterCount={swCharacterCount}
+        swAPI={swAPI}
+        setswAPI={setswAPI}
+        setAPI={setAPI}
+      />
     </div>
   );
 }

@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const handleClick = (event, props) => {
   const { id } = event.target;
-  props.setAPI(props.setswAPI, `https://swapi.dev/api/people/?page=${id}`);
+  const endAPI = props.swAPI.includes('search') ? `&page=${id}` : `?page=${id}`;
+  console.log(`${props.swAPI}${endAPI}`);
+  props.setAPI(props.setswAPI, `${props.swAPI}${endAPI}`);
 };
 
 function getNumberOfButtons(props) {
