@@ -2,8 +2,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const handleClick = (e, props) => {
-  const { id } = e.target;
+const handleClick = (event, props) => {
+  const { id } = event.target;
   props.setAPI(props.setswAPI, `https://swapi.dev/api/people/?page=${id}`);
 };
 
