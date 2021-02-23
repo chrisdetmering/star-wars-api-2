@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
+import Pagination from './Pagination';
 import '../styles/app.css';
 
-const getCharacterInfo = async () => {
+const getCharacterInfo = async (swAPI) => {
   let response;
   try {
-    response = await axios.get('https://swapi.dev/api/people/');
+    response = await axios.get(swAPI);
     console.log(response.data);
   } catch (error) {
     console.log(error);
@@ -54,19 +55,27 @@ const setSpecies = async (response) => {
   }
 };
 
+const setAPI = (setswAPI, API) => {
+  setswAPI(API);
+  // console.log(swAPI);
+};
+
 function App() {
   const [swCharacterInfo, setswCharacterInfo] = useState({});
+  const [swCharacterCount, setswCharacterCount] = useState(0);
+  const [swAPI, setswAPI] = useState('https://swapi.dev/api/people/');
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData = await getCharacterInfo();
+      const responseData = await getCharacterInfo(swAPI);
       const { characterCount, characterInfo } = responseData;
       await setHomeWorld(characterInfo);
       await setSpecies(characterInfo);
       setswCharacterInfo(characterInfo);
+      setswCharacterCount(characterCount);
     };
     fetchData();
-  }, []);
+  }, [swAPI]);
 
   return (
     <div className="app">
@@ -74,6 +83,7 @@ function App() {
         <h1>Star Wars API</h1>
         <Table swCharacterInfo={swCharacterInfo} />
       </main>
+      <Pagination swCharacterCount={swCharacterCount} setswAPI={setswAPI} setAPI={setAPI} />
     </div>
   );
 }
