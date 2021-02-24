@@ -2,11 +2,27 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const getAPI = (api, split) => {
+  if (api.includes(split)) {
+    const index = api.indexOf(split);
+    return api.slice(0, index);
+  }
+  return api;
+};
+
 const handleClick = (event, props) => {
   const { id } = event.target;
+
+  let apiStart = '';
+
+  if (props.swAPI.includes('search')) {
+    apiStart = getAPI(props.swAPI, '&');
+  } else {
+    apiStart = 'https://swapi.dev/api/people/';
+  }
+
   const endAPI = props.swAPI.includes('search') ? `&page=${id}` : `?page=${id}`;
-  console.log(`${props.swAPI}${endAPI}`);
-  props.setAPI(props.setswAPI, `${props.swAPI}${endAPI}`);
+  props.setAPI(props.setswAPI, `${apiStart}${endAPI}`);
 };
 
 function getNumberOfButtons(props) {

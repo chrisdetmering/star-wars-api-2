@@ -10,7 +10,6 @@ const getCharacterInfo = async (swAPI) => {
   let response;
   try {
     response = await axios.get(swAPI);
-    console.log(response.data);
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +20,6 @@ const getCharacterInfo = async (swAPI) => {
 };
 
 const getHomeworld = async (worldAPI) => {
-  console.log('Hello from GetHomeworld', worldAPI);
   const world = await axios.get(worldAPI);
   return world.data.name;
 };
@@ -36,7 +34,6 @@ const setHomeWorld = async (response) => {
 };
 
 const getSpecies = async (speciesAPI) => {
-  console.log('Hello from GetSpecies', speciesAPI);
   const species = await axios.get(speciesAPI);
   return species.data.name;
 };
@@ -58,7 +55,6 @@ const setSpecies = async (response) => {
 
 const setAPI = (setswAPI, API) => {
   setswAPI(API);
-  // console.log(swAPI);
 };
 
 function App() {

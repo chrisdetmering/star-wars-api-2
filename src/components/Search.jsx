@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 const handleChange = (event, setSearch) => {
-  console.log(event.target.value);
   setSearch(event.target.value.trim());
 };
 
 const handleSubmit = (event, props, search) => {
   event.preventDefault();
-  console.log(search);
   const api = search.length > 0 ? `https://swapi.dev/api/people/?search=${search}` : 'https://swapi.dev/api/people/';
   props.setAPI(props.setswAPI, api);
 };
