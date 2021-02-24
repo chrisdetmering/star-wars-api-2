@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/pagination.css';
 
 const getAPI = (api, split) => {
   if (api.includes(split)) {
@@ -36,7 +37,7 @@ function generateButton(props) {
   const buttonArr = [];
   let buttonCount = 1;
   while (buttonCount <= getNumberOfButtons(props)) {
-    buttonArr.push(<button id={buttonCount} className="button" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
+    buttonArr.push(<button id={buttonCount} className="btn btn-dark" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
     buttonCount += 1;
   }
   return buttonArr;
@@ -44,7 +45,7 @@ function generateButton(props) {
 
 function Pagination(props) {
   return (
-    <div>
+    <div id="pagination-container">
       {generateButton(props)}
     </div>
   );

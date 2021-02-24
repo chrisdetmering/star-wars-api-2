@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/search.css';
 
 const handleChange = (event, setSearch) => {
   setSearch(event.target.value.trim());
@@ -15,9 +16,9 @@ function Search(props) {
   return (
     <div>
       <form onSubmit={(event) => handleSubmit(event, props, search)}>
-        <input type="text" name="search" value={search} onChange={(event) => handleChange(event, setSearch)} />
+        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(event) => handleChange(event, setSearch)} />
         {/* eslint-disable-next-line react/button-has-type */}
-        <button type="submit" value="Search">Search</button>
+        <button className="btn btn-dark my-2 my-sm-0" type="submit" value="Search">Search</button>
       </form>
     </div>
   );
