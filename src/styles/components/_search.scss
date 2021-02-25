@@ -1,9 +1,15 @@
-.search {
-    display: inline-block;
-    max-width: 85%;
+.search-form {
+  display: flex;
+  justify-content: space-between;
 }
 
-.btn.submit {
-    display: inline-block;
-    margin: 0;
+.search {
+  font-size: 1.6rem;
+  margin: 0;
+  max-width: 90%;
+}
+
+.submit {
+  font-size: 1.6rem;
+  margin: 0 0 0 0.5rem;
 }

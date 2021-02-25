@@ -13,11 +13,11 @@ const handleSubmit = (event, props, search) => {
 function Search(props) {
   const [search, setSearch] = useState('');
   return (
-    <div>
-      <form onSubmit={(event) => handleSubmit(event, props, search)}>
-        <input className="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(event) => handleChange(event, setSearch)} />
+    <div id="search-container">
+      <form className="search-form" onSubmit={(event) => handleSubmit(event, props, search)}>
+        <input className="form-control search" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(event) => handleChange(event, setSearch)} />
         {/* eslint-disable-next-line react/button-has-type */}
-        <button className="btn btn-dark my-2 my-sm-0 submit" type="submit" value="Search">Search</button>
+        <button className="btn btn-dark submit" type="submit" value="Search">Search</button>
       </form>
     </div>
   );
