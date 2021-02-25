@@ -1,0 +1,9 @@
+.search {
+    display: inline-block;
+    max-width: 85%;
+}
+
+.btn.submit {
+    display: inline-block;
+    margin: 0;
+}
