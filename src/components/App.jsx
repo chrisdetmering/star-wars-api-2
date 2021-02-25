@@ -6,6 +6,10 @@ import Search from './Search';
 import Pagination from './Pagination';
 import '../styles/app.css';
 
+const apiToHTTPS = (api) => {
+  return `https${api.slice(4, api.length - 1)}`;
+};
+
 const getCharacterInfo = async (swAPI) => {
   let response;
   try {
@@ -20,7 +24,7 @@ const getCharacterInfo = async (swAPI) => {
 };
 
 const getHomeworld = async (worldAPI) => {
-  const world = await axios.get(worldAPI);
+  const world = await axios.get(apiToHTTPS(worldAPI));
   return world.data.name;
 };
 
@@ -36,7 +40,7 @@ const setHomeWorld = async (characters) => {
 };
 
 const getSpecies = async (speciesAPI) => {
-  const species = await axios.get(speciesAPI);
+  const species = await axios.get(apiToHTTPS(speciesAPI));
   return species.data.name;
 };
 
