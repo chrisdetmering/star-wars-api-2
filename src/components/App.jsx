@@ -24,12 +24,15 @@ const getCharacterInfo = async (swAPI) => {
 };
 
 const getHomeworld = async (worldAPI) => {
-  const world = await axios.get(apiToHTTPS(worldAPI));
+  const world = await axios.get(worldAPI);
   return world.data.name;
 };
 
 const setHomeWorld = async (characters) => {
   const promises = characters.map((character) => {
+    // eslint-disable-next-line no-param-reassign
+    character.homeworld = apiToHTTPS(character.homeworld);
+    console.log(character.homeworld);
     return getHomeworld(character.homeworld).then((world) => {
       // eslint-disable-next-line no-param-reassign
       character.homeworld = world;
@@ -40,7 +43,7 @@ const setHomeWorld = async (characters) => {
 };
 
 const getSpecies = async (speciesAPI) => {
-  const species = await axios.get(apiToHTTPS(speciesAPI));
+  const species = await axios.get(speciesAPI);
   return species.data.name;
 };
 
@@ -51,6 +54,8 @@ const setSpecies = async (characters) => {
       character.species = 'Human';
       return character.species;
     }
+    // eslint-disable-next-line no-param-reassign
+    character.species[0] = apiToHTTPS(character.species[0]);
     return getSpecies(character.species[0]).then((species) => {
       // eslint-disable-next-line no-param-reassign
       character.species = species;
