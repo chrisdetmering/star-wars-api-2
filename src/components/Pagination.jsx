@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/pagination.css';
 
@@ -37,7 +38,7 @@ function generateButton(props) {
   const buttonArr = [];
   let buttonCount = 1;
   while (buttonCount <= getNumberOfButtons(props)) {
-    buttonArr.push(<button id={buttonCount} className="btn btn-dark" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
+    buttonArr.push(<button key={uuidv4()} id={buttonCount} className="btn btn-dark" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
     buttonCount += 1;
   }
   return buttonArr;
