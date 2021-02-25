@@ -7,7 +7,7 @@ import Pagination from './Pagination';
 import '../styles/app.css';
 
 const apiToHTTPS = (api) => {
-  return `https${api.slice(4, api.length - 1)}`;
+  return api.replace('http', 'https'); 
 };
 
 const getCharacterInfo = async (swAPI) => {
@@ -24,6 +24,7 @@ const getCharacterInfo = async (swAPI) => {
 };
 
 const getHomeworld = async (worldAPI) => {
+  console.log(worldAPI); 
   const world = await axios.get(worldAPI);
   return world.data.name;
 };
@@ -43,6 +44,7 @@ const setHomeWorld = async (characters) => {
 };
 
 const getSpecies = async (speciesAPI) => {
+    console.log(speciesAPI); 
   const species = await axios.get(speciesAPI);
   return species.data.name;
 };
