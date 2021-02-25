@@ -1,8 +1,6 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/table.css';
 
 function displayData(props) {
   return props.swCharacterInfo.map((characterInfo) => {

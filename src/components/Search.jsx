@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/search.css';
 
 const handleChange = (event, setSearch) => {
   setSearch(event.target.value.trim());

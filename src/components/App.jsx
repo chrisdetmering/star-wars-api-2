@@ -4,7 +4,6 @@ import axios from 'axios';
 import Table from './Table';
 import Search from './Search';
 import Pagination from './Pagination';
-import '../styles/app.css';
 
 const apiToHTTPS = (api) => {
   return api.replace('http', 'https');

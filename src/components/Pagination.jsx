@@ -1,8 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/pagination.css';
 
 const getAPI = (api, split) => {
   if (api.includes(split)) {
