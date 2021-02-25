@@ -24,13 +24,15 @@ const getHomeworld = async (worldAPI) => {
   return world.data.name;
 };
 
-const setHomeWorld = async (response) => {
-  // eslint-disable-next-line no-restricted-syntax
-  for (const characterInfo of response) {
-    // eslint-disable-next-line no-await-in-loop
-    const world = await getHomeworld(characterInfo.homeworld);
-    characterInfo.homeworld = (world);
-  }
+const setHomeWorld = async (characters) => {
+  const promises = characters.map((character) => {
+    return getHomeworld(character.homeworld).then((world) => {
+      // eslint-disable-next-line no-param-reassign
+      character.homeworld = world;
+    });
+  });
+
+  await Promise.all(promises);
 };
 
 const getSpecies = async (speciesAPI) => {
@@ -38,19 +40,19 @@ const getSpecies = async (speciesAPI) => {
   return species.data.name;
 };
 
-const setSpecies = async (response) => {
-  let species;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const characterInfo of response) {
-    // eslint-disable-next-line no-await-in-loop
-    if (characterInfo.species.length === 0) {
-      characterInfo.species = 'Human';
-    } else {
-      // eslint-disable-next-line no-await-in-loop
-      species = await getSpecies(characterInfo.species[0]);
-      characterInfo.species = (species);
+const setSpecies = async (characters) => {
+  const promises = characters.map((character) => {
+    if (character.species.length === 0) {
+      // eslint-disable-next-line no-param-reassign
+      character.species = 'Human';
+      return character.species;
     }
-  }
+    return getSpecies(character.species[0]).then((species) => {
+      // eslint-disable-next-line no-param-reassign
+      character.species = species;
+    });
+  });
+  await Promise.all(promises);
 };
 
 const setAPI = (setswAPI, API) => {
