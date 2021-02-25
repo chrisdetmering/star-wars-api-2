@@ -7,7 +7,7 @@ import Pagination from './Pagination';
 import '../styles/app.css';
 
 const apiToHTTPS = (api) => {
-  return `https${api.slice(4, api.length - 1)}`;
+  return api.replace('http', 'https');
 };
 
 const getCharacterInfo = async (swAPI) => {
@@ -24,14 +24,14 @@ const getCharacterInfo = async (swAPI) => {
 };
 
 const getHomeworld = async (worldAPI) => {
-  const world = await axios.get(worldAPI);
+  const world = await axios.get(apiToHTTPS(worldAPI));
   return world.data.name;
 };
 
 const setHomeWorld = async (characters) => {
   const promises = characters.map((character) => {
     // eslint-disable-next-line no-param-reassign
-    character.homeworld = apiToHTTPS(character.homeworld);
+    // character.homeworld = apiToHTTPS(character.homeworld);
     console.log(character.homeworld);
     return getHomeworld(character.homeworld).then((world) => {
       // eslint-disable-next-line no-param-reassign
@@ -43,7 +43,7 @@ const setHomeWorld = async (characters) => {
 };
 
 const getSpecies = async (speciesAPI) => {
-  const species = await axios.get(speciesAPI);
+  const species = await axios.get(apiToHTTPS(speciesAPI));
   return species.data.name;
 };
 
@@ -55,7 +55,7 @@ const setSpecies = async (characters) => {
       return character.species;
     }
     // eslint-disable-next-line no-param-reassign
-    character.species[0] = apiToHTTPS(character.species[0]);
+    // character.species[0] = apiToHTTPS(character.species[0]);
     return getSpecies(character.species[0]).then((species) => {
       // eslint-disable-next-line no-param-reassign
       character.species = species;
