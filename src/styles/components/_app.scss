@@ -1,22 +1,23 @@
-.app {
-    align-items: center;
-    background: url("../../images/fleet-art.jpg") no-repeat center center/cover;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding-top: 2.5rem;
-    position: relative;
-    z-index: 2;
-}
+//.app {
+//  background: url("../../images/fleet-art.jpg") no-repeat center center/cover;
+//  height: 100vh;
+//  padding-top: 2.5rem;
+//  position: relative;
+//  width: 100%;
+//  z-index: 2;
+//}
+//
+//.app::before {
+//  background-color: rgba(0, 0, 0, 0.75);
+//  content: "";
+//  position: absolute;
+//  height: 100%;
+//  left: 0;
+//  top: 0;
+//  width: 100%;
+//  z-index: -1;
+//}
 
-.app::before {
-        background-color: rgba(0, 0, 0, 0.75);
-        content: "";
-        position: absolute;
-        height: 100%;
-        left: 0;
-        top: 0;
-        width: 100%;
-        z-index: -1;
+#main-page-container {
+  color: #000;
 }

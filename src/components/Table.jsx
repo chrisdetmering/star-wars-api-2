@@ -33,10 +33,10 @@ function Table(props) {
         </thead>
         <tbody>
           {
-            // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-            props.swCharacterInfo[0]
-            // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-            && displayData(props)
+          // eslint-disable-next-line react/prop-types,react/destructuring-assignment
+          props.swCharacterInfo[0]
+          // eslint-disable-next-line react/prop-types,react/destructuring-assignment
+          && displayData(props)
           }
         </tbody>
       </table>

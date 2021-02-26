@@ -80,24 +80,25 @@ function App() {
   }, [swAPI]);
 
   return (
-    <div className="app">
-      <main>
-        <div className="row">
-          <div className="col-sm-12">
-            <Search setswAPI={setswAPI} setAPI={setAPI} />
+    <div className="container app">
+      <div id="main-page-container">
+        <main>
+          <div className="row">
+            <div className="col-12">
+              <Search setswAPI={setswAPI} setAPI={setAPI} />
+            </div>
           </div>
 
-        </div>
-
-        <h1>Star Wars API</h1>
-        <Table swCharacterInfo={swCharacterInfo} />
-        <Pagination
-          swCharacterCount={swCharacterCount}
-          swAPI={swAPI}
-          setswAPI={setswAPI}
-          setAPI={setAPI}
-        />
-      </main>
+          <h1>Star Wars API</h1>
+          <Table swCharacterInfo={swCharacterInfo} />
+          <Pagination
+            swCharacterCount={swCharacterCount}
+            swAPI={swAPI}
+            setswAPI={setswAPI}
+            setAPI={setAPI}
+          />
+        </main>
+      </div>
     </div>
   );
 }
