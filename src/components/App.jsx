@@ -5,14 +5,14 @@ import Table from './Table';
 import Search from './Search';
 import Pagination from './Pagination';
 
-const httpToHttps = (api) => {
-  return api.replace('http', 'https');
+const httpToHttps = (url) => {
+  return url.replace('http', 'https');
 };
 
-const getCharacterInfo = async (swAPI) => {
+const getCharacterInfo = async (swURL) => {
   let response;
   try {
-    response = await axios.get(swAPI);
+    response = await axios.get(swURL);
   } catch (error) {
     console.log(error);
   }
@@ -22,8 +22,8 @@ const getCharacterInfo = async (swAPI) => {
   };
 };
 
-const getHomeworld = async (worldAPI) => {
-  const world = await axios.get(httpToHttps(worldAPI));
+const getHomeworld = async (worldURL) => {
+  const world = await axios.get(httpToHttps(worldURL));
   return world.data.name;
 };
 
@@ -58,18 +58,18 @@ const setSpecies = async (characters) => {
   await Promise.all(promises);
 };
 
-const setAPI = (setswAPI, API) => {
-  setswAPI(API);
+const setURL = (setswURL, URL) => {
+  setswURL(URL);
 };
 
 function App() {
   const [swCharacterInfo, setswCharacterInfo] = useState({});
   const [swCharacterCount, setswCharacterCount] = useState(0);
-  const [swAPI, setswAPI] = useState('https://swapi.dev/api/people/');
+  const [swURL, setswURL] = useState('https://swapi.dev/api/people/');
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData = await getCharacterInfo(swAPI);
+      const responseData = await getCharacterInfo(swURL);
       const { characterCount, characterInfo } = responseData;
       await setHomeWorld(characterInfo);
       await setSpecies(characterInfo);
@@ -77,7 +77,7 @@ function App() {
       setswCharacterCount(characterCount);
     };
     fetchData();
-  }, [swAPI]);
+  }, [swURL]);
 
   return (
     <div className="container app">
@@ -85,7 +85,7 @@ function App() {
         <main>
           <div className="row">
             <div className="col-12">
-              <Search setswAPI={setswAPI} setAPI={setAPI} />
+              <Search setswURL={setswURL} setURL={setURL} />
             </div>
           </div>
 
@@ -93,9 +93,9 @@ function App() {
           <Table swCharacterInfo={swCharacterInfo} />
           <Pagination
             swCharacterCount={swCharacterCount}
-            swAPI={swAPI}
-            setswAPI={setswAPI}
-            setAPI={setAPI}
+            swURL={swURL}
+            setswURL={setswURL}
+            setAPI={setURL}
           />
         </main>
       </div>

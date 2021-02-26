@@ -6,8 +6,8 @@ const handleChange = (event, setSearch) => {
 
 const handleSubmit = (event, props, search) => {
   event.preventDefault();
-  const api = search.length > 0 ? `https://swapi.dev/api/people/?search=${search}` : 'https://swapi.dev/api/people/';
-  props.setAPI(props.setswAPI, api);
+  const url = search.length > 0 ? `https://swapi.dev/api/people/?search=${search}` : 'https://swapi.dev/api/people/';
+  props.setURL(props.setswURL, url);
 };
 
 function Search(props) {

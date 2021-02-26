@@ -2,27 +2,27 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const getAPI = (api, split) => {
-  if (api.includes(split)) {
-    const index = api.indexOf(split);
-    return api.slice(0, index);
+const getUrl = (url, split) => {
+  if (url.includes(split)) {
+    const index = url.indexOf(split);
+    return url.slice(0, index);
   }
-  return api;
+  return url;
 };
 
 const handleClick = (event, props) => {
   const { id } = event.target;
 
-  let apiStart = '';
+  let urlStart = '';
 
-  if (props.swAPI.includes('search')) {
-    apiStart = getAPI(props.swAPI, '&');
+  if (props.swURL.includes('search')) {
+    urlStart = getUrl(props.swURL, '&');
   } else {
-    apiStart = 'https://swapi.dev/api/people/';
+    urlStart = 'https://swapi.dev/api/people/';
   }
 
-  const endAPI = props.swAPI.includes('search') ? `&page=${id}` : `?page=${id}`;
-  props.setAPI(props.setswAPI, `${apiStart}${endAPI}`);
+  const urlEnd = props.swURL.includes('search') ? `&page=${id}` : `?page=${id}`;
+  props.setAPI(props.setswURL, `${urlStart}${urlEnd}`);
 };
 
 function getNumberOfButtons(props) {
