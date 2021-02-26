@@ -36,7 +36,7 @@ function generateButton(props) {
   const buttonArr = [];
   let buttonCount = 1;
   while (buttonCount <= getNumberOfButtons(props)) {
-    buttonArr.push(<button key={uuidv4()} id={buttonCount} className="btn btn-dark" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
+    buttonArr.push(<button key={uuidv4()} id={buttonCount} className="btn btn-dark pagination" onClick={(event) => handleClick(event, props)}>{buttonCount}</button>);
     buttonCount += 1;
   }
   return buttonArr;
