@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation,arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
@@ -30,7 +29,6 @@ const getHomeworld = async (worldURL) => {
 const setHomeWorld = async (characters) => {
   const promises = characters.map((character) => {
     return getHomeworld(character.homeworld).then((world) => {
-      // eslint-disable-next-line no-param-reassign
       character.homeworld = world;
     });
   });
@@ -46,12 +44,10 @@ const getSpecies = async (speciesAPI) => {
 const setSpecies = async (characters) => {
   const promises = characters.map((character) => {
     if (character.species.length === 0) {
-      // eslint-disable-next-line no-param-reassign
       character.species = 'Human';
       return character.species;
     }
     return getSpecies(character.species[0]).then((species) => {
-      // eslint-disable-next-line no-param-reassign
       character.species = species;
     });
   });
@@ -85,18 +81,32 @@ function App() {
         <main>
           <div className="row">
             <div className="col-12">
+              <h1 id="hero-title">Star Wars API</h1>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
               <Search setswURL={setswURL} setURL={setURL} />
             </div>
           </div>
 
-          <h1>Star Wars API</h1>
-          <Table swCharacterInfo={swCharacterInfo} />
-          <Pagination
-            swCharacterCount={swCharacterCount}
-            swURL={swURL}
-            setswURL={setswURL}
-            setAPI={setURL}
-          />
+          <div className="row">
+            <div className="col-12">
+              <Table swCharacterInfo={swCharacterInfo} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <Pagination
+                swCharacterCount={swCharacterCount}
+                swURL={swURL}
+                setswURL={setswURL}
+                setAPI={setURL}
+              />
+            </div>
+          </div>
         </main>
       </div>
     </div>
