@@ -1,6 +1,9 @@
 # Star Wars Data
+
 _RESTful API app using the Star Wars API._
+
 ###Tech Used
+
 React, React Hooks, Axios, HTML5, CSS3, Bootstrap, Heroku, and Netlify.
  
 You can check out the app [here](http://sw-data.aarondevon.com/).
