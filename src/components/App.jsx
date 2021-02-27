@@ -81,7 +81,7 @@ function App() {
         <main>
           <div className="row">
             <div className="col-12">
-              <h1 id="hero-title">Star Wars API</h1>
+              <h1 id="hero-title">Star Wars Data</h1>
             </div>
           </div>
 
