@@ -2,7 +2,7 @@
 
 _RESTful API app using the Star Wars API._
 
-###Tech Used
+### Tech Used
 
 React, React Hooks, Axios, HTML5, CSS3, Bootstrap, Heroku, and Netlify.
  
