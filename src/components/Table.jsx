@@ -1,8 +1,5 @@
-/* eslint-disable arrow-body-style */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/table.css';
 
 function displayData(props) {
   return props.swCharacterInfo.map((characterInfo) => {
@@ -35,10 +32,7 @@ function Table(props) {
         </thead>
         <tbody>
           {
-            // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-            props.swCharacterInfo[0]
-            // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-            && displayData(props)
+          props.swCharacterInfo[0] && displayData(props)
           }
         </tbody>
       </table>

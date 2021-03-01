@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/search.css';
 
 const handleChange = (event, setSearch) => {
   setSearch(event.target.value.trim());
@@ -7,18 +6,18 @@ const handleChange = (event, setSearch) => {
 
 const handleSubmit = (event, props, search) => {
   event.preventDefault();
-  const api = search.length > 0 ? `https://swapi.dev/api/people/?search=${search}` : 'https://swapi.dev/api/people/';
-  props.setAPI(props.setswAPI, api);
+  const url = search.length > 0 ? `https://swapi.dev/api/people/?search=${search}` : 'https://swapi.dev/api/people/';
+  props.setURL(props.setswURL, url);
 };
 
 function Search(props) {
   const [search, setSearch] = useState('');
   return (
-    <div>
-      <form onSubmit={(event) => handleSubmit(event, props, search)}>
-        <input className="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(event) => handleChange(event, setSearch)} />
+    <div id="search-container">
+      <form className="search-form" onSubmit={(event) => handleSubmit(event, props, search)}>
+        <input className="form-control search" type="search" placeholder="Name Search" aria-label="Search" value={search} onChange={(event) => handleChange(event, setSearch)} />
         {/* eslint-disable-next-line react/button-has-type */}
-        <button className="btn btn-dark my-2 my-sm-0 submit" type="submit" value="Search">Search</button>
+        <button className="btn btn-dark submit" type="submit" value="Search">Search</button>
       </form>
     </div>
   );

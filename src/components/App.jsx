@@ -1,19 +1,17 @@
-/* eslint-disable dot-notation,arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
 import Search from './Search';
 import Pagination from './Pagination';
-import '../styles/app.css';
 
-const apiToHTTPS = (api) => {
-  return api.replace('http', 'https'); 
+const httpToHttps = (url) => {
+  return url.replace('http', 'https');
 };
 
-const getCharacterInfo = async (swAPI) => {
+const getCharacterInfo = async (swURL) => {
   let response;
   try {
-    response = await axios.get(swAPI);
+    response = await axios.get(swURL);
   } catch (error) {
     console.log(error);
   }
@@ -23,19 +21,14 @@ const getCharacterInfo = async (swAPI) => {
   };
 };
 
-const getHomeworld = async (worldAPI) => {
-  console.log(worldAPI); 
-  const world = await axios.get(worldAPI);
+const getHomeworld = async (worldURL) => {
+  const world = await axios.get(httpToHttps(worldURL));
   return world.data.name;
 };
 
 const setHomeWorld = async (characters) => {
   const promises = characters.map((character) => {
-    // eslint-disable-next-line no-param-reassign
-    character.homeworld = apiToHTTPS(character.homeworld);
-    console.log(character.homeworld);
     return getHomeworld(character.homeworld).then((world) => {
-      // eslint-disable-next-line no-param-reassign
       character.homeworld = world;
     });
   });
@@ -44,40 +37,35 @@ const setHomeWorld = async (characters) => {
 };
 
 const getSpecies = async (speciesAPI) => {
-    console.log(speciesAPI); 
-  const species = await axios.get(speciesAPI);
+  const species = await axios.get(httpToHttps(speciesAPI));
   return species.data.name;
 };
 
 const setSpecies = async (characters) => {
   const promises = characters.map((character) => {
     if (character.species.length === 0) {
-      // eslint-disable-next-line no-param-reassign
       character.species = 'Human';
       return character.species;
     }
-    // eslint-disable-next-line no-param-reassign
-    character.species[0] = apiToHTTPS(character.species[0]);
     return getSpecies(character.species[0]).then((species) => {
-      // eslint-disable-next-line no-param-reassign
       character.species = species;
     });
   });
   await Promise.all(promises);
 };
 
-const setAPI = (setswAPI, API) => {
-  setswAPI(API);
+const setURL = (setswURL, URL) => {
+  setswURL(URL);
 };
 
 function App() {
   const [swCharacterInfo, setswCharacterInfo] = useState({});
   const [swCharacterCount, setswCharacterCount] = useState(0);
-  const [swAPI, setswAPI] = useState('https://swapi.dev/api/people/');
+  const [swURL, setswURL] = useState('https://swapi.dev/api/people/');
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData = await getCharacterInfo(swAPI);
+      const responseData = await getCharacterInfo(swURL);
       const { characterCount, characterInfo } = responseData;
       await setHomeWorld(characterInfo);
       await setSpecies(characterInfo);
@@ -85,21 +73,42 @@ function App() {
       setswCharacterCount(characterCount);
     };
     fetchData();
-  }, [swAPI]);
+  }, [swURL]);
 
   return (
-    <div className="app">
-      <main>
-        <Search setswAPI={setswAPI} setAPI={setAPI} />
-        <h1>Star Wars API</h1>
-        <Table swCharacterInfo={swCharacterInfo} />
-      </main>
-      <Pagination
-        swCharacterCount={swCharacterCount}
-        swAPI={swAPI}
-        setswAPI={setswAPI}
-        setAPI={setAPI}
-      />
+    <div className="container app">
+      <div id="main-page-container">
+        <main>
+          <div className="row">
+            <div className="col-12">
+              <h1 id="hero-title">Star Wars Data</h1>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <Search setswURL={setswURL} setURL={setURL} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <Table swCharacterInfo={swCharacterInfo} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <Pagination
+                swCharacterCount={swCharacterCount}
+                swURL={swURL}
+                setswURL={setswURL}
+                setAPI={setURL}
+              />
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

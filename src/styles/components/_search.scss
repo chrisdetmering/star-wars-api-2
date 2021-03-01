@@ -1,0 +1,19 @@
+#search-container {
+  margin: 2rem  0 4rem 0;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  font-size: 1.6rem;
+  margin: 0;
+  max-width: 90%;
+}
+
+.submit {
+  font-size: 1.6rem;
+  margin: 0 0 0 0.5rem;
+}
