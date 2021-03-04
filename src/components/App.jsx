@@ -54,26 +54,43 @@ const setSpecies = async (characters) => {
   await Promise.all(promises);
 };
 
-const setURL = (setswURL, URL) => {
-  setswURL(URL);
-};
-
 function App() {
-  const [swCharacterInfo, setswCharacterInfo] = useState({});
-  const [swCharacterCount, setswCharacterCount] = useState(0);
-  const [swURL, setswURL] = useState('https://swapi.dev/api/people/');
+  const [characters, setCharacters] = useState([]);
+  const [characterCount, setCharacterCount] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   useEffect(() => {
-    const fetchData = async () => {
-      const responseData = await getCharacterInfo(swURL);
+    getCharacters(`https://swapi.dev/api/people/`); 
+  }, []);
+
+
+  async function getCharacters(url) { 
+    const responseData = await getCharacterInfo(url);
       const { characterCount, characterInfo } = responseData;
       await setHomeWorld(characterInfo);
       await setSpecies(characterInfo);
-      setswCharacterInfo(characterInfo);
-      setswCharacterCount(characterCount);
-    };
-    fetchData();
-  }, [swURL]);
+      setCharacters(characterInfo);
+      setCharacterCount(characterCount);
+  }
+
+
+  function handleSearchButtonClick() { 
+    getCharacters(`https://swapi.dev/api/people/?search=${searchTerm}`); 
+  }
+
+  function handlePageButtonClick(event) { 
+    const pageNumber = event.target.id
+    if (searchTerm === '') { 
+      getCharacters(`https://swapi.dev/api/people/?page=${pageNumber}`)
+    } else { 
+      getCharacters(`https://swapi.dev/api/people/?search=${searchTerm}&page=${pageNumber}`); 
+    }
+  }
+
+  function handleSearchTermChange(event) { 
+    setSearchTerm(event.target.value.trim());
+  }
 
   return (
     <div className="container app">
@@ -87,23 +104,24 @@ function App() {
 
           <div className="row">
             <div className="col-12">
-              <Search setswURL={setswURL} setURL={setURL} />
+              <Search 
+                search={handleSearchButtonClick} 
+                change={handleSearchTermChange}
+                value={searchTerm}/>
             </div>
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Table swCharacterInfo={swCharacterInfo} />
+              <Table characters={characters} />
             </div>
           </div>
 
           <div className="row">
             <div className="col-12">
               <Pagination
-                swCharacterCount={swCharacterCount}
-                swURL={swURL}
-                setswURL={setswURL}
-                setAPI={setURL}
+                characterCount={characterCount}
+                click={handlePageButtonClick}
               />
             </div>
           </div>
