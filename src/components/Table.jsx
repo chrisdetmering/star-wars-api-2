@@ -31,6 +31,7 @@ function Table(props) {
           </tr>
         </thead>
         <tbody>
+          {/* additional conditional check */}
           {
           props.swCharacterInfo[0] && displayData(props)
           }

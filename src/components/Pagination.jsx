@@ -25,6 +25,7 @@ const handleClick = (event, props) => {
 };
 
 function getNumberOfButtons(props) {
+  // Math.floor
   let mainNumber = props.swCharacterCount / 10;
   mainNumber += (props.swCharacterCount % 10 === 0) ? 0 : 1;
 
