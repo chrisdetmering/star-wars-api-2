@@ -17,3 +17,24 @@ The app pulls character data from the Star Wars API and presents that data in a 
 
 ## Author
 **Aaron Sawyer** - *Full-Stack* Software Developer - [Website](https://www.aarondevon.com/) | [Linkedin](https://www.linkedin.com/in/aarondsawyer/)
+
+
+#How I am going to do this
+#Go though step by step 
+#I will pause the video
+#Take brakes 
+
+
+#Good 
+#1.Breaking up Code (App)
+#2.moving functions outside of Functional Component Body > a new function is made on each re-render (App)
+
+#Focus: Simplicity
+#1. Naming > CamelCase (conventions) + No abbreviation (Andy) (done)
+#2. Unnecessary conditional check in Table.jsx  > Simpler (done)
+#3. Math.ceil in getNumberOfButtons(props) > Simpler (done)
+#4. change where you call getNumberOfButtons in generateButton(props) > Processing (done)
+#5. Change generateButton to createButtons > Naming (done)
+#6. Simplify all the functions called in getCharacters > Simplicity 
+#7. Simplify functions to just being four: getCharacters, handleSearchButtonClick, handlePageButtonClick and handleSearchTermChange > Simplicity/Single Source of Truth
+

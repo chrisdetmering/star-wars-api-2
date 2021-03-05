@@ -2,7 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function displayData(props) {
-  return props.swCharacterInfo.map((characterInfo) => {
+  return props.characters.map((characterInfo) => {
     return (
       <tr key={uuidv4()}>
         <td>{characterInfo.name}</td>
@@ -31,9 +31,7 @@ function Table(props) {
           </tr>
         </thead>
         <tbody>
-          {
-          props.swCharacterInfo[0] && displayData(props)
-          }
+          {displayData(props)}
         </tbody>
       </table>
 
